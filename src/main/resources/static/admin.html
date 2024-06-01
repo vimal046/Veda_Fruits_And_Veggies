@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+<title>Admin Page</title>
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link
+	href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700'
+	rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<link rel="stylesheet" href="css/admin.css">
+<link rel="stylesheet" href="css/crud.css">
+
+</head>
+
+<body>
+
+	<!--Nav Start-->
+
+	<nav
+		class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light"
+		id="ftco-navbar">
+		<div class="container-fluid">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#ftco-nav" aria-controls="ftco-nav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="fa fa-bars"></span> Menu
+			</button>
+			<div class="collapse navbar-collapse" id="ftco-nav">
+				<ul class="navbar-nav m-auto">
+					<li class="nav-item "><a href="#" id="home" class="nav-link">Home</a></li>
+					<li class="nav-item dropdown"></li>
+					<li class="nav-item"><a href="#" id="orders" class="nav-link">Orders</a></li>
+					<li class="nav-item"><a href="#" id="feedback"
+						class="nav-link">feedback</a></li>
+				</ul>
+			</div>
+		</div>
+		<button id="logoutButton" type="submit"
+			class="btn btn-danger mr-5 btn-sm">Logout</button>
+	</nav>
+
+	<!-- END nav -->
+
+	<!--Crud Container Start-->
+
+	<div class="container" id="product-container">
+		<div class="table-responsive">
+			<div class="table-wrapper">
+				<div class="table-title">
+					<div class="row">
+						<div class="col-xs-6">
+							<a href="#addModal" class="btn btn-success" data-toggle="modal"><i
+								class="material-icons">&#xE147;</i> <span>Add New Product</span></a>
+						</div>
+					</div>
+				</div>
+				<table class="table table-striped table-hover">
+					<thead>
+						<tr>
+							<th style="width: 5%">Product Id</th>
+							<th style="width: 15%">Name</th>
+							<th style="width: 10%">Price</th>
+							<th style="width: 30%">Image Location</th>
+							<th style="width: 30%">Description</th>
+							<th style="width: 25%">Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Data dynamically distributed through java script -->
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Add Modal HTML -->
+
+	<div id="addModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="addForm" enctype="multipart/form-data">
+					<div class="modal-header">
+						<h4 class="modal-title">Add Product</h4>
+						<button type="button" class="btn-close" data-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<input type="text" id="productName" placeholder="Product Name"
+								class="form-control custom-in my-3" required />
+						</div>
+						<div class="form-group">
+							<input type="text" id="price" placeholder="Price"
+								class="form-control custom-in my-3" required />
+						</div>
+						<div class="form-group">
+							<input type="file" id="imgLoc"
+								class="form-control custom-in my-3" required />
+						</div>
+						<div class="form-group">
+							<textarea class="form-control custom-in my-3" id="description"
+								placeholder="Description" required rows="8" cols="40"></textarea>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal"
+							value="Cancel" />
+						<button type="submit" class="btn btn-success">Add</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!------ Edit Modal HTML ----->
+
+
+	<div id="editModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="updateForm">
+					<div class="modal-header">
+						<h4 class="modal-title">Update Product</h4>
+						<button type="button" class="btn-close" data-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<input type="text" id="id" placeholder="Id"
+								class="form-control my-4" readonly />
+						</div>
+						<div class="form-group">
+							<input type="text" id="u_productName" placeholder="Product Name"
+								class="form-control my-4" required />
+						</div>
+						<div class="form-group">
+							<input type="text" id="u_price" placeholder="Price"
+								class="form-control my-4" required />
+						</div>
+						<div class="form-group">
+							<input type="text" id="u_imgLoc" placeholder="Image Location"
+								class="form-control my-4" readonly />
+						</div>
+						<div class="form-group">
+							<textarea type="text" class="form-control my-4" id="desc"
+								placeholder="Description" rows="8" cols="40" required></textarea>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal"
+							value="Cancel" /> <input type="submit" class="btn btn-info"
+							value="Update" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+	<!----- Delete Modal HTML ----->
+
+
+	<div id="deleteModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form id="deleteForm">
+					<div class="modal-header">
+						<h4 class="modal-title">Delete Product</h4>
+						<button type="button" class="btn-close" data-dismiss="modal"
+							aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<input type="hidden" id="d_id" /> <input type="hidden"
+							id="d_imgLoc" />
+						<p>Are you sure you want to delete these Records?</p>
+						<p class="text-warning">
+							<small>This action cannot be undone.</small>
+						</p>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal"
+							value="Cancel" /> <input type="submit" class="btn btn-danger"
+							value="Delete" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!--Crud Container End-->
+
+
+	<div class="container mt-5" id="order-container">
+
+		<!-- Java script dynamically insert the data -->
+
+	</div>
+
+
+
+
+	<!--Feedback table container start -->
+
+	<div class="container mt-5" id="feedback-container">
+		<table class="table table-info table-bordered" id="user-table">
+			<thead>
+				<tr>
+					<th style="width: 10%">Id</th>
+					<th style="width: 15%">Name</th>
+					<th style="width: 25%">Email</th>
+					<th style="width: 50%">Review</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- Table rows will be dynamically inserted here -->
+			</tbody>
+		</table>
+	</div>
+
+	<!--Feedback table container start -->
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/popper.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/admin.js"></script>
+
+
+</body>
+
+</html>
